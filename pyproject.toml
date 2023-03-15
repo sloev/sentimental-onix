@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "sentimental-onix"
+version = "0.0.1"
+description = "spacy pipeline component for sentiment analysis using onnx"
+readme = "README.md"
+authors = [{ name = "sloev", email = "johannes.valbjorn@gmail.com" }]
+license = { file = "LICENSE" }
+classifiers = [
+    "Development Status :: 6 - Mature",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+]
+keywords = ["spacy", "onnx", "sentiment", "english", "nlp"]
+dependencies = [
+    "spacy >= 3.0.3",
+    "onnx >= 1.13.1",
+    "onnxruntime >= 1.14.1",
+    "numpy",
+]
+requires-python = ">=3.8"
+
+[project.scripts]
+sentimental_onix = "sentimental_onix.cli:main"
+
+[project.optional-dependencies]
+dev = ["black>=23.1.0", "pytest"]
+
+[project.urls]
+Homepage = "https://github.com/sloev/sentimental-onix"
+
+[tool.setuptools]
+include-package-data = true
