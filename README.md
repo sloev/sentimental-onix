@@ -51,6 +51,15 @@ assert sentences == [
 
 ```
 
+# Benchmark
+
+|         library|   result|
+|----------------|---------|
+|   spacytextblob|    58.9%|
+|sentimental_onix|      69%|
+ 
+See [./benchmark/](./benchmark/) for info
+
 ## Dev setup / testing
 
 <details><summary>expand</summary>

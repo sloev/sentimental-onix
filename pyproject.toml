@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sentimental-onix"
-version = "0.0.1"
+version = "0.0.2"
 description = "spacy pipeline component for sentiment analysis using onnx"
 readme = "README.md"
 authors = [{ name = "sloev", email = "johannes.valbjorn@gmail.com" }]
