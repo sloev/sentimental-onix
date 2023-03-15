@@ -39,5 +39,5 @@ with open("dataset.csv", "r") as datasetfile:
             )
 
 
-for k,v in results.items():
-    print(k, v/results["total"], "%")
+for k, v in results.items():
+    print(k, v / results["total"], "%")
