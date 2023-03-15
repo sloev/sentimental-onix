@@ -1,3 +1,5 @@
+sentimental_onix/inference/en/model.onnx
+sentimental_onix/inference/en/tokenizer.onnx
 .DS_Store
 # Byte-compiled / optimized / DLL files
 __pycache__/

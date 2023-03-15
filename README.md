@@ -9,12 +9,14 @@ Sentiment Analysis using [onnx](https://github.com/onnx/onnx) for python with a 
 **Features**
 - [x] English sentiment analysis
 - [x] Spacy pipeline component
-
+- [x] Sentiment model downloading from github
 
 ## Install
 
 ```bash
-pip install spacy_onnx_sentiment_english
+$ pip install sentimental_onix
+# download english sentiment model
+$ python -m sentimental_onix download en
 ```
 
 ## Usage
@@ -51,6 +53,9 @@ assert sentences == [
 
 ## Dev setup / testing
 
+<details><summary>expand</summary>
+
+
 ### Install
 
 install the dev package and pyenv versions
@@ -58,6 +63,7 @@ install the dev package and pyenv versions
 ```bash
 $ pip install -e ".[dev]"
 $ python -m spacy download en_core_web_sm
+$ python -m sentimental_onix download en
 ```
 
 ### Run tests
@@ -75,3 +81,5 @@ python3 -m pip install --upgrade build twine
 python3 -m build
 python3 -m twine upload dist/*
 ```
+
+</details>

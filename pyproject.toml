@@ -27,8 +27,6 @@ dependencies = [
 ]
 requires-python = ">=3.8"
 
-[project.scripts]
-sentimental_onix = "sentimental_onix.cli:main"
 
 [project.optional-dependencies]
 dev = ["black>=23.1.0", "pytest"]
@@ -37,4 +35,4 @@ dev = ["black>=23.1.0", "pytest"]
 Homepage = "https://github.com/sloev/sentimental-onix"
 
 [tool.setuptools]
-include-package-data = true
+include-package-data = false

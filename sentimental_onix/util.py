@@ -3,8 +3,15 @@ import json
 import warnings
 
 import numpy as np
+import urllib.request, zipfile, io
 
 # isort: off
+
+
+def download_and_extract_zip(zip_url, target_dir):
+    with urllib.request.urlopen(zip_url) as dl_file:
+        z = zipfile.ZipFile(io.BytesIO(dl_file.read()))
+        z.extractall(target_dir)
 
 
 def pad_sequences(

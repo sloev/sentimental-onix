@@ -2,15 +2,8 @@ from typing import Optional
 from spacy.tokens import Span
 from spacy.language import Language
 from spacy.util import minibatch
-import onnx
-import numpy as np
-from onnxruntime import InferenceSession
 
-from sentimental_onix import models
-from sentimental_onix import util
-
-_label_to_index = {"NEGATIVE": 0, "NEUTRAL": 1, "POSITIVE": 2}
-_index_to_label = {v: k for k, v in _label_to_index.items()}
+import sentimental_onix.inference.en
 
 
 @Language.factory(
@@ -35,41 +28,15 @@ class SentimentalOnix:
         self.threshold = threshold
 
         if lang == "en":
-            tokenizer_path = models.EN_SENTIMENT_TOKENIZER_PATH
-            onnx_model_path = models.EN_SENTIMENT_MODEL_PATH
+            self.infer = sentimental_onix.inference.en.create_infererence_function(
+                threshold=threshold
+            )
         else:
             raise NotImplementedError(
                 f"sentimental_onix has no support for language: {lang}"
             )
 
-        with open(tokenizer_path, "r") as handle:
-            self.tokenizer = util.tokenizer_from_json(handle.read())
-
-        onnx_model = onnx.load(onnx_model_path)
-
-        self.onnx_session = InferenceSession(onnx_model.SerializeToString())
-
         Span.set_extension("sentiment", default=None, force=True)
-
-    def infer(self, texts):
-        tokenized = self.tokenizer.texts_to_sequences(texts)
-
-        padded_tokenized = util.pad_sequences(tokenized, maxlen=54)
-
-        predictions = self.onnx_session.run(
-            None, {"Tokenized_Sent_Input:0": padded_tokenized}
-        )
-        predictions = predictions[0]
-
-        results = []
-        for pred in predictions:
-            if max(pred) < self.threshold:
-                results.append("Neutral")
-            else:
-                predicted_token = np.argmax(pred)
-                predicted_decoded = _index_to_label[predicted_token]
-                results.append(predicted_decoded.lower().capitalize())
-        return results
 
     def __call__(self, doc):
         sentences = [str(sent) for sent in doc.sents]

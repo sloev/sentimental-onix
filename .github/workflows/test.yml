@@ -28,4 +28,5 @@ jobs:
         run: |
           pytest --version
           python -m spacy download en_core_web_sm
+          python -m sentimental_onix download en
           pytest -vvl
