@@ -51,7 +51,7 @@ assert sentences == [
 
 ```
 
-# Benchmark
+## Benchmark
 
 |         library|   result|
 |----------------|---------|
