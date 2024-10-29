@@ -21,7 +21,9 @@ def create_infererence_function(threshold=0.7, **kwargs):
 
     onnx_model = onnx.load(_onnx_model_path)
 
-    onnx_session = InferenceSession(onnx_model.SerializeToString())
+    onnx_session = InferenceSession(
+        onnx_model.SerializeToString(), providers=["CPUExecutionProvider"]
+    )
 
     def infer(texts):
         tokenized = tokenizer.texts_to_sequences(texts)
